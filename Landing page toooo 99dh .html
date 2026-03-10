@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GANAG | مكتبة الكورسات المغربية</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121933;
+      --card-2:#0f1630;
+      --text:#eef2ff;
+      --muted:#b8c0e0;
+      --brand:#6d5cff;
+      --brand-2:#8f7dff;
+      --accent:#ffd54a;
+      --success:#25D366;
+      --border:rgba(255,255,255,.08);
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(109,92,255,.25), transparent 30%),
+        radial-gradient(circle at top left, rgba(37,211,102,.12), transparent 20%),
+        linear-gradient(180deg,#080c18 0%, #0b1020 40%, #0e1428 100%);
+      color:var(--text);
+      line-height:1.75;
+    }
+
+    a{text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(100%, 460px); margin:auto; padding:0 16px}
+    .section{padding:26px 0}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      color:#fff; font-size:13px; font-weight:700;
+      backdrop-filter:blur(8px);
+    }
+
+    header{
+      position:sticky; top:0; z-index:100;
+      background:rgba(8,12,24,.78);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .logo{
+      font-weight:900; font-size:22px; letter-spacing:.7px;
+    }
+    .logo span{color:var(--accent)}
+    .mini-btn{
+      background:linear-gradient(135deg,var(--success),#1faf54);
+      color:#fff; padding:11px 14px; border-radius:14px;
+      font-size:13px; font-weight:800; box-shadow:var(--shadow);
+    }
+
+    .hero{
+      padding:24px 0 18px;
+    }
+    .hero-card{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(160deg, rgba(109,92,255,.22), rgba(18,25,51,.98) 50%);
+      border:1px solid var(--border);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      padding:22px 18px;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute; inset:auto -45px -45px auto;
+      width:160px; height:160px;
+      background:radial-gradient(circle, rgba(255,213,74,.18), transparent 65%);
+      border-radius:50%;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:31px;
+      line-height:1.25;
+      font-weight:900;
+    }
+    .lead{
+      color:var(--muted);
+      font-size:15px;
+      margin:0 0 18px;
+    }
+    .price-box{
+      display:grid; gap:10px;
+      margin:18px 0;
+    }
+    .price{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      padding:15px;
+      border-radius:18px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .price strong{font-size:28px; color:var(--accent)}
+    .price small{color:var(--muted); display:block}
+    .hero-actions{
+      display:grid; gap:10px;
+      margin-top:14px;
+    }
+    .btn{
+      display:block; text-align:center; padding:15px 18px;
+      border-radius:16px; font-weight:900; font-size:16px;
+    }
+    .btn-primary{
+      color:#111;
+      background:linear-gradient(135deg,var(--accent),#ffea88);
+      box-shadow:0 14px 35px rgba(255,213,74,.25);
+    }
+    .btn-secondary{
+      color:#fff;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    .stats{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+      margin-top:18px;
+    }
+    .stat{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      padding:12px 10px; border-radius:18px; text-align:center;
+    }
+    .stat strong{display:block; font-size:20px; color:#fff}
+    .stat span{font-size:12px; color:var(--muted)}
+
+    .title{
+      font-size:23px; margin:0 0 8px; font-weight:900;
+    }
+    .sub{
+      color:var(--muted); margin:0 0 18px; font-size:14px;
+    }
+
+    .grid{
+      display:grid; gap:12px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+    .feature{
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .icon{
+      min-width:44px; height:44px; border-radius:14px;
+      display:grid; place-items:center; font-size:22px;
+      background:linear-gradient(135deg, rgba(109,92,255,.25), rgba(143,125,255,.08));
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .feature h3{
+      margin:0 0 4px; font-size:16px;
+    }
+    .feature p{
+      margin:0; color:var(--muted); font-size:13px;
+    }
+
+    .courses-note{
+      background:linear-gradient(135deg, rgba(37,211,102,.12), rgba(255,255,255,.03));
+      border:1px solid rgba(37,211,102,.18);
+      color:#eafff0;
+      padding:16px;
+      border-radius:20px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .category-card{
+      position:relative;
+      overflow:hidden;
+      padding:16px;
+      border-radius:22px;
+      background:linear-gradient(165deg, rgba(109,92,255,.16), rgba(18,25,51,.96));
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+    .category-card h3{
+      margin:0 0 6px; font-size:17px;
+    }
+    .category-card p{
+      margin:0; color:var(--muted); font-size:13px;
+    }
+    .pill{
+      display:inline-block;
+      margin-top:10px;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(255,213,74,.12);
+      color:#ffe27d;
+      border:1px solid rgba(255,213,74,.18);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .reviews{
+      display:grid; gap:12px;
+    }
+    .review{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:16px;
+    }
+    .stars{color:#ffd54a; font-size:15px; margin-bottom:8px}
+    .review p{margin:0; font-size:14px}
+    .review small{display:block; margin-top:10px; color:var(--muted)}
+
+    .cta-box{
+      background:linear-gradient(160deg, rgba(255,213,74,.12), rgba(109,92,255,.18));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:28px;
+      padding:22px 18px;
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+    .cta-box h2{
+      margin:0 0 10px;
+      font-size:26px;
+      line-height:1.3;
+    }
+    .cta-box p{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    footer{
+      padding:30px 0 100px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .sticky-buy{
+      position:fixed;
+      right:14px; left:14px; bottom:14px;
+      z-index:120;
+    }
+    .sticky-buy a{
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      background:linear-gradient(135deg,var(--success),#1faf54);
+      color:#fff; padding:16px 18px; border-radius:18px;
+      font-weight:900; box-shadow:0 20px 40px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+      margin:10px 0 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="logo">GA<span>NAG</span></div>
+        <a class="mini-btn" href="https://wa.me/212782558795" target="_blank">واتساب</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <span class="badge">🔥 مكتبة مغربية شاملة + تحديثات مستمرة</span>
+          <h1>أكثر من <span style="color:var(--accent)">20 مجال</span> وكل مجال فيه <span style="color:var(--accent)">+10 كورسات</span></h1>
+          <p class="lead">مكتبة رقمية موجهة للهاتف، منظمة وسهلة، فيها أقوى المجالات المطلوبة دابا: الإيكوم، المنتجات الرقمية، الإعلانات، التداول، صناعة المحتوى، اليوتيوب أوتوميشن، البراندينغ وأكثر.</p>
+
+          <div class="price-box">
+            <div class="price">
+              <div>
+                <small>ولوج كامل للمكتبة</small>
+                <b>دفعة واحدة</b>
+              </div>
+              <strong>99 DH</strong>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/212782558795" target="_blank">🚀 بغيت المكتبة الآن عبر واتساب</a>
+            <a class="btn btn-secondary" href="#categories">شوف المجالات كاملة</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><strong>20+</strong><span>مجال</span></div>
+            <div class="stat"><strong>10+</strong><span>كورسات لكل مجال</span></div>
+            <div class="stat"><strong>24/7</strong><span>وصول من الهاتف</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="title">علاش هاد المكتبة قوية؟</h2>
+        <p class="sub">مصممة باش الزبون يفهم بسرعة من أول شاشة في الهاتف ويضغط مباشرة على واتساب.</p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="feature">
+              <div class="icon">📱</div>
+              <div>
+                <h3>موجهة للهاتف 100%</h3>
+                <p>الصفحة خفيفة، واضحة، والأزرار كبار باش التفاعل يكون سهل من الموبايل.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="feature">
+              <div class="icon">🎓</div>
+              <div>
+                <h3>محتوى كبير ومنظم</h3>
+                <p>أكثر من 20 مجال، وكل مجال فيه 10 كورسات أو أكثر باش المتعلم يلقى كلشي في بلاصة وحدة.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="feature">
+              <div class="icon">💸</div>
+              <div>
+                <h3>ثمن ساهل مقابل قيمة كبيرة</h3>
+                <p>99 درهم فقط مقابل مكتبة واسعة فيها مجالات عليها طلب كبير فالسوق.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="feature">
+              <div class="icon">⚡</div>
+              <div>
+                <h3>دخول سريع عبر واتساب</h3>
+                <p>من أول ضغط الزبون يقدر يتواصل مباشرة ويكمل الشراء بدون تعقيد.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="courses-note" style="margin-top:14px">
+          ✅ كل مجال داخل المكتبة فيه أكثر من 10 كورسات، يعني المستخدم ماشي غير كياخذ عنوان واحد، بل مجموعة كاملة من الدروس والتطبيقات داخل نفس التخصص.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <h2 class="title">المجالات الموجودة داخل المكتبة</h2>
+        <p class="sub">هاد اللائحة معمولة باش تبين القوة ديال العرض: تنوع كبير + عمق داخل كل مجال.</p>
+
+        <div class="grid">
+          <div class="category-card"><h3>🛒 Ecommerce</h3><p>بناء المتجر، اختيار المنتج، الموردين، التسعير، البيع والتوسيع.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>💽 Digital Product</h3><p>إنشاء منتجات رقمية، التسويق، البيع، التسعير، وصفحات التحويل.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🎵 TikTok Beta</h3><p>استراتيجيات النشر، الاستفادة، المونتيزاسيون، وتحويل المشاهدات لنتائج.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>📈 Trading</h3><p>الأساسيات، التحليل، إدارة المخاطر، وفهم الأسواق بطريقة مبسطة.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🎬 Content Creation</h3><p>صناعة محتوى جذاب، كتابة الأفكار، تصوير، مونتاج، ونشر احترافي.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>▶ YouTube Automation</h3><p>إنشاء قنوات، اختيار النيش، السكريبت، الصوت، المونتاج، والنشر.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>✨ Branding</h3><p>بناء الهوية، تصميم العلامة، التموضع، والظهور بشكل احترافي.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🖨 POD</h3><p>Print on Demand من اختيار التصاميم حتى البيع والتسويق.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>📢 TikTok Ads</h3><p>إعداد الحملات، الكرياتيف، الاستهداف، والتحسين.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>📣 Facebook Ads</h3><p>بيكسل، حملات، صفحات البيع، وتحسين الأداء.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>📺 YouTube Ads</h3><p>إعلانات الفيديو، الاستهداف، ورفع النتائج بأقل تكلفة.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🤖 AI Tools</h3><p>أدوات الذكاء الاصطناعي في المحتوى، التسويق، التصميم والخدمة.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>💻 Programming</h3><p>تعلم البرمجة، المشاريع، وأساسيات بناء الأدوات والويب.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🎨 Design</h3><p>تصميم السوشيال ميديا، الإعلانات، البراند، والواجهات.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>✂ Editing / Montage</h3><p>مونتاج الفيديوهات، الريلز، تيك توك، ويوتيوب بشكل احترافي.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🌍 Freelancing</h3><p>كيف تبدأ، تبني الخدمة، تجيب العملاء، وتكبر الدخل.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🧲 Copywriting</h3><p>كتابة الإعلانات، صفحات البيع، والرسائل اللي كتبيع.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>📬 Email Marketing</h3><p>بناء القوائم، التسلسل، الأتمتة، ورفع المبيعات عبر الإيميل.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🔍 SEO</h3><p>تحسين الظهور في جوجل، الكلمات المفتاحية، والمحتوى.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🧠 Personal Branding</h3><p>بناء صورة قوية في السوق وخلق حضور رقمي مؤثر.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>💼 Business & Sales</h3><p>المبيعات، التفاوض، وبناء طريقة خدمة أو عرض يربح.</p><span class="pill">+10 كورسات</span></div>
+          <div class="category-card"><h3>🎤 Voice & Presentation</h3><p>التقديم، التواصل، والإقناع أمام الكاميرا أو مع العملاء.</p><span class="pill">+10 كورسات</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="title">شنو كياخذ الزبون؟</h2>
+        <div class="grid">
+          <div class="card">
+            <div class="feature">
+              <div class="icon">📚</div>
+              <div>
+                <h3>ولوج لمكتبة كبيرة</h3>
+                <p>مجالات متنوعة مطلوبة في السوق، من التجارة الإلكترونية حتى المحتوى والإعلانات.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="feature">
+              <div class="icon">🔓</div>
+              <div>
+                <h3>وصول سهل ومنظم</h3>
+                <p>تقسيم واضح للمجالات باش المستخدم يلقى بسرعة التخصص اللي باغي.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="feature">
+              <div class="icon">🚀</div>
+              <div>
+                <h3>بداية سريعة</h3>
+                <p>مناسب للمبتدئ وحتى اللي باغي يوسع المعرفة ديالو في مجالات الدخل الرقمي.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="title">آراء الناس</h2>
+        <div class="reviews">
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>هاد المكتبة فيها بزاف ديال التخصصات، دخلت ليها من الهاتف وكلشي منظم وواضح.</p>
+            <small>مستخدم من المغرب</small>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>أفضل حاجة هي أن كل مجال ماشي فيه غير كورس واحد، كاين محتوى كثير وتفاصيل أكثر.</p>
+            <small>طالب مهتم بالدخل الرقمي</small>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>الثمن مناسب بزاف مقارنة مع عدد المجالات والكورسات اللي داخلين فالمكتبة.</p>
+            <small>مستخدم جديد</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-box">
+          <span class="badge">⏳ العرض مناسب لأي شخص باغي يبدأ بسرعة</span>
+          <h2>خذ مكتبة الكورسات المغربية الآن</h2>
+          <p>إذا كنت باغي تتعلم مجالات رقمية كثيرة بثمن بسيط ومن هاتفك، هادي فرصة قوية باش تبدأ.</p>
+          <a class="btn btn-primary" href="https://wa.me/212782558795" target="_blank">🔥 شراء الآن عبر واتساب</a>
+          <div class="divider"></div>
+          <p style="margin-top:14px">ولوج كامل • أكثر من 20 مجال • +10 كورسات في كل مجال</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      GANAG<br>
+      جميع الحقوق محفوظة
+    </div>
+  </footer>
+
+  <div class="sticky-buy">
+    <a href="https://wa.me/212782558795" target="_blank">💬 اطلب المكتبة الآن عبر واتساب</a>
+  </div>
+</body>
+</html>
